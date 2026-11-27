@@ -148,7 +148,7 @@ class WalletViewModel(
             _isBusy.value = false
             result.fold(
                 onSuccess = { count ->
-                    _status.value = "Berhasil mengekspor $count catatan transaksi ke file JSON." to false
+                    _status.value = "Berhasil mengekspor $count data (transaksi & penawaran CnF) ke file JSON." to false
                 },
                 onFailure = { err ->
                     _status.value = (err.message ?: "Gagal mengekspor data.") to true
@@ -183,7 +183,7 @@ class WalletViewModel(
             result.fold(
                 onSuccess = { count ->
                     val mode = if (replaceExisting) "dipulihkan" else "ditambahkan"
-                    _status.value = "Berhasil: $count transaksi $mode ke database lokal." to false
+                    _status.value = "Berhasil: $count data $mode ke database lokal." to false
                 },
                 onFailure = { err ->
                     _status.value = (err.message ?: "Gagal mengimpor data.") to true

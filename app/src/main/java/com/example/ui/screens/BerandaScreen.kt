@@ -19,7 +19,9 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -101,7 +103,8 @@ fun BerandaScreen(
     onWalletClick: () -> Unit,
     onNavigateTab: (HomeTab) -> Unit,
     onDeleteTransaction: (Long) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    listState: LazyListState = rememberLazyListState()
 ) {
     var showAllTransactionsSheet by remember { mutableStateOf(false) }
     var pendingDeleteItem by remember { mutableStateOf<TransactionEntity?>(null) }
@@ -119,6 +122,7 @@ fun BerandaScreen(
             contentAlignment = Alignment.TopCenter
         ) {
             LazyColumn(
+                state = listState,
                 modifier = Modifier
                     .widthIn(max = 640.dp)
                     .fillMaxSize(),

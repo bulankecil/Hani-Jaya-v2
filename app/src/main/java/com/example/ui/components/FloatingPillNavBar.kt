@@ -1,5 +1,8 @@
 package com.example.ui.components
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -29,6 +32,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -118,8 +122,16 @@ fun FloatingPillNavBar(
                 HomeTab.entries.forEach { tab ->
                     val isSelected = tab == selectedTab
                     val label = stringResource(tab.titleRes)
-                    val tint = if (isSelected) WalletIndigo else TextSecondary
-                    val pillColor = if (isSelected) WalletIndigo.copy(alpha = 0.11f) else Color.Transparent
+                    val tint by animateColorAsState(
+                        targetValue = if (isSelected) WalletIndigo else TextSecondary,
+                        animationSpec = tween(durationMillis = 220, easing = FastOutSlowInEasing),
+                        label = "nav_tint_${tab.name}"
+                    )
+                    val pillColor by animateColorAsState(
+                        targetValue = if (isSelected) WalletIndigo.copy(alpha = 0.11f) else Color.Transparent,
+                        animationSpec = tween(durationMillis = 220, easing = FastOutSlowInEasing),
+                        label = "nav_pill_${tab.name}"
+                    )
 
                     Column(
                         modifier = Modifier

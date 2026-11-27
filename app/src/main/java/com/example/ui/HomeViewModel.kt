@@ -8,7 +8,7 @@ import com.example.data.local.TransactionEntity
 import com.example.data.repository.FinanceRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -27,46 +27,33 @@ class HomeViewModel(
     private val repository: FinanceRepository
 ) : ViewModel() {
 
-    val uiState: StateFlow<HomeUiState> = repository.allTransactions
-        .map { list ->
-            val income = list.sumOf { it.incomeAmount }
-            val expense = list.sumOf { it.expenseAmount }
-            HomeUiState(
-                netBalance = income - expense,
-                totalIncome = income,
-                totalExpense = expense,
-                cnfCalculationCount = list.count { it.category == TransactionCategory.CNF_CALCULATION.code },
-                cnfPriceCount = list.count { it.category == TransactionCategory.CNF_PRICE.code },
-                recentTransactions = list.take(5),
-                allTransactions = list,
-                isLoading = false
-            )
-        }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = HomeUiState()
-        )
-
-    fun addTransaction(
-        referenceTitle: String,
-        foreignValueLabel: String,
-        locationRoute: String,
-        category: TransactionCategory,
-        incomeAmount: Long,
-        expenseAmount: Long
-    ) {
+    init {
         viewModelScope.launch {
-            repository.addTransaction(
-                referenceTitle = referenceTitle,
-                foreignValueLabel = foreignValueLabel,
-                locationRoute = locationRoute,
-                category = category,
-                incomeAmount = incomeAmount,
-                expenseAmount = expenseAmount
-            )
+            repository.ensurePreviewCnfOffersSeeded()
         }
     }
+
+    val uiState: StateFlow<HomeUiState> = combine(
+        repository.allTransactions,
+        repository.allCnfOffers
+    ) { transactions, cnfOffers ->
+        val income = transactions.sumOf { it.incomeAmount }
+        val expense = transactions.sumOf { it.expenseAmount }
+        HomeUiState(
+            netBalance = income - expense,
+            totalIncome = income,
+            totalExpense = expense,
+            cnfCalculationCount = cnfOffers.size,
+            cnfPriceCount = transactions.count { it.category == TransactionCategory.CNF_PRICE.code },
+            recentTransactions = transactions.take(5),
+            allTransactions = transactions,
+            isLoading = false
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = HomeUiState()
+    )
 
     fun deleteTransaction(id: Long) {
         viewModelScope.launch {

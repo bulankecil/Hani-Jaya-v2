@@ -33,4 +33,9 @@
     <string name="coming_soon_badge">Segera Hadir</string>
     <string name="coming_soon_description">Halaman ini sedang disiapkan untuk pembaruan berikutnya. Saat ini seluruh ringkasan utama tersedia di Beranda.</string>
     <string name="action_back_to_home">Kembali ke Beranda</string>
+    <string name="cnf_calc_subtitle">Breakdown biaya CnF untuk penawaran</string>
+    <string name="cnf_expected_pl_title">Ekspektasi R/L</string>
+    <string name="cd_search_offers">Cari penawaran</string>
+    <string name="cd_edit_offer">Edit detail penawaran</string>
+    <string name="cd_add_offer">Tambah penawaran CnF</string>
 </resources>

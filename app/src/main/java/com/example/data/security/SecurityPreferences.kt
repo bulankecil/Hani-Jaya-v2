@@ -3,6 +3,7 @@ package com.example.data.security
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
@@ -24,10 +25,21 @@ sealed interface PinChangeResult {
 class SecurityPreferences(private val context: Context) {
 
     private val pinHashKey = stringPreferencesKey("wallet_pin_hash")
+    private val cnfPreviewSeededKey = booleanPreferencesKey("cnf_preview_seeded_v1")
 
     val isDefaultPinActive: Flow<Boolean> = context.securityDataStore.data.map { prefs ->
         val stored = prefs[pinHashKey]
         stored == null || stored == hashPin(DEFAULT_PIN)
+    }
+
+    suspend fun hasSeededCnfPreview(): Boolean {
+        return context.securityDataStore.data.first()[cnfPreviewSeededKey] == true
+    }
+
+    suspend fun markCnfPreviewSeeded() {
+        context.securityDataStore.edit { prefs ->
+            prefs[cnfPreviewSeededKey] = true
+        }
     }
 
     suspend fun verifyPin(pin: String): Boolean {

@@ -534,7 +534,7 @@ fun WalletHubScreen(
             title = { Text("Konfirmasi Impor JSON") },
             text = {
                 Text(
-                    "Ditemukan ${backup.transactions.size} catatan transaksi dari backup " +
+                    "Ditemukan ${backup.transactions.size} transaksi dan ${backup.cnfOffers.size} penawaran CnF dari backup " +
                         "(${CurrencyFormatter.formatDateTime(backup.exportedAt)}). " +
                         "Pilih metode pemulihan ke database lokal:"
                 )

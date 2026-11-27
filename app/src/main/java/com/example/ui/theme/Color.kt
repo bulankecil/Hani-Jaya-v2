@@ -30,3 +30,6 @@ val IncomeGreen = Color(0xFF059669)
 val ExpenseRed = Color(0xFFDC2626)
 val SubtleBorder = Color(0xFFE8ECF4)
 val WarningAmber = Color(0xFFD97706)
+val CostYellowBg = Color(0xFFFEF9E3)
+val CostYellowBorder = Color(0xFFFDE68A)
+
