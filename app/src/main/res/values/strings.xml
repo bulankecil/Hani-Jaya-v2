@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Hani Jaya</string>
+    <string name="company_header">CV. HANI JAYA - Heavy Machinery</string>
+    <string name="screen_title_financial_notes">Catatan Keuangan</string>
+    <string name="cd_wallet_button">Buka dompet dan keamanan PIN</string>
+    <string name="cd_back_button">Kembali</string>
+    <string name="label_net_balance">Saldo Bersih (Balance)</string>
+    <string name="label_income">Income</string>
+    <string name="label_expenses">Expenses</string>
+    <string name="label_cnf_calculation">CnF Calculation</string>
+    <string name="subtitle_cnf_calculation">Kalkulasi &amp; penawaran</string>
+    <string name="unit_offers">penawaran</string>
+    <string name="label_cnf_price">CnF Price</string>
+    <string name="subtitle_cnf_price">Daftar harga transaksi</string>
+    <string name="unit_transactions">transaksi</string>
+    <string name="section_recent_transactions">Transaksi Terbaru</string>
+    <string name="action_view_all">Lihat semua</string>
+    <string name="action_add_transaction">Tambah Transaksi</string>
+    <string name="action_import_json">Impor JSON</string>
+    <string name="empty_transactions_title">Belum ada catatan transaksi</string>
+    <string name="empty_transactions_subtitle">Catatan pemasukan dan pengeluaran alat berat akan tampil di sini. Gunakan ikon dompet di kanan atas untuk impor backup JSON.</string>
+    <string name="nav_home">Beranda</string>
+    <string name="nav_cnf_calc">CnF Calculation</string>
+    <string name="nav_cnf_price">CnF Price</string>
+    <string name="nav_transactions">Transaksi</string>
+    <string name="nav_reports">Laporan</string>
+    <string name="pin_screen_title">Keamanan Dompet</string>
+    <string name="pin_prompt_title">Masukkan PIN Keamanan</string>
+    <string name="pin_prompt_subtitle">Akses fitur ekspor, impor data JSON, dan pengaturan PIN untuk menjaga keamanan catatan keuangan Anda.</string>
+    <string name="pin_default_hint">PIN default awal: 123456 (dapat diubah setelah masuk)</string>
+    <string name="pin_error_incorrect">PIN salah. Silakan coba lagi.</string>
+    <string name="wallet_hub_title">Dompet &amp; Backup Data</string>
+    <string name="coming_soon_badge">Segera Hadir</string>
+    <string name="coming_soon_description">Halaman ini sedang disiapkan untuk pembaruan berikutnya. Saat ini seluruh ringkasan utama tersedia di Beranda.</string>
+    <string name="action_back_to_home">Kembali ke Beranda</string>
+</resources>

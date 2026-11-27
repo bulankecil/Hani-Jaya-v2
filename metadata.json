@@ -1,0 +1,6 @@
+{
+  "name": "Hani Jaya",
+  "description": "Aplikasi catatan keuangan dan operasional offline CV. HANI JAYA - Heavy Machinery dengan database lokal, keamanan PIN dompet, serta ekspor dan impor JSON.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
